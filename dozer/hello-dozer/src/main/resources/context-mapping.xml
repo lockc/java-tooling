@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+  
+  <mapping map-id="case-a"> 
+    <class-a>lockc.dozer.examples.TypeA</class-a>
+    <class-b>lockc.dozer.examples.TypeB</class-b>   
+    <field>
+      <a>fieldX</a>
+      <b>fieldC</b>
+    </field>
+  </mapping>
+  
+  <mapping map-id="case-b"> 
+    <class-a>lockc.dozer.examples.TypeA</class-a>
+    <class-b>lockc.dozer.examples.TypeB</class-b>   
+    <field>
+      <a>fieldX</a>
+      <b>fieldB</b>
+    </field>
+  </mapping>
+</mappings> 
