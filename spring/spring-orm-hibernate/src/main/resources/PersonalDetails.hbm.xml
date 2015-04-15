@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="lockc.spring.examples.demo.domain.PersonalDetails" table="personal_details">
+		<id type="java.lang.Long">
+			<column name="ID"/>
+			<generator class="identity" />
+		</id>
+		<property name="customerId" type="java.lang.Long">
+            <column name="CUST_ID" length="50" not-null="false" unique="false" />
+        </property>
+		<property name="firstname" type="string">
+            <column name="FIRST_NAME" length="50" not-null="false" unique="false" />
+        </property>
+        <property name="surname" type="string">
+            <column name="SURNAME" length="50" not-null="false" unique="false" />
+        </property>
+        <property name="addressLine1" type="string">
+            <column name="ADDRESS_LINE_1" length="100" not-null="false" unique="false" />
+        </property>
+        <property name="addressLine2" type="string">
+            <column name="ADDRESS_LINE_2" length="100" not-null="false" unique="false" />
+        </property>
+        <property name="town" type="string">
+            <column name="TOWN" length="20" not-null="false" unique="false" />
+        </property>
+        <property name="postcode" type="string">
+            <column name="POSTCODE" length="8" not-null="false" unique="false" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="100" not-null="false" unique="false" />
+        </property>
+	</class>
+
+</hibernate-mapping>

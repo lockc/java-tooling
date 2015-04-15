@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- 
+	  Standalone application so we need to register an MBean Server.
+	  Will create a MBean server bean with an id of 'mbeanServer' 
+	-->
+	<context:mbean-server/>
+	
+	<!--  
+	  This example demonstrates a number of scenarios
+	    1. Using the MethodNameBasedMBeanInfoAssembler to specify what methods to manage via JMX
+	    2. Using a single MethodNameBasedMBeanInfoAssembler accross multiple beans e.g. mixing method names from multiple classes
+	    3. Using a MethodNameBasedMBeanInfoAssembler per class as with 'anotherJmxTestBeanAssembler' bean hence using multiple MBeanExporter beans
+	 -->
+	 
+	 
+	<bean id="jmxTestBeanAssembler" class="org.springframework.jmx.export.assembler.MethodNameBasedMBeanInfoAssembler">
+		<property name="managedMethods" value="getAge,setAge,getName,setName,getCount"/>
+	</bean>
+	
+	<bean id="anotherJmxTestBeanAssembler" class="org.springframework.jmx.export.assembler.MethodNameBasedMBeanInfoAssembler">
+		<property name="managedMethods" value="getCount"/>
+	</bean>
+	
+	
+	<bean id="mbeanExporter" class="org.springframework.jmx.export.MBeanExporter">
+		<property name="beans">
+			<map>
+				<entry key="spring.jmx.examples:name=managed1" value-ref="testBean"/>
+				<entry key="spring.jmx.examples:name=managed2" value-ref="testBean2"/>
+				<entry key="spring.jmx.examples:name=managed3" value-ref="testBean3"/>
+			</map>
+		</property>
+		<property name="server" ref="mbeanServer"/>
+		<property name="assembler" ref="jmxTestBeanAssembler"/>
+	</bean>
+	
+	<bean id="mbeanExporter2" class="org.springframework.jmx.export.MBeanExporter">
+		<property name="beans">
+			<map>
+				<entry key="spring.jmx.examples:name=managed4" value-ref="testBean3"/>
+			</map>
+		</property>
+		<property name="server" ref="mbeanServer"/>
+		<property name="assembler" ref="anotherJmxTestBeanAssembler"/>
+	</bean>
+
+	<bean id="testBean" class="lockc.spring.examples.core.jmx.JmxTestBean">
+		<property name="name" value="Chris" />
+		<property name="age" value="33" />
+	</bean>
+	
+	<bean id="testBean2" class="lockc.spring.examples.core.jmx.JmxTestBean">
+		<property name="name" value="Chris" />
+		<property name="age" value="33" />
+	</bean>
+	
+	<bean id="testBean3" class="lockc.spring.examples.core.jmx.AnotherJmxTestBean">
+		<property name="count" value="5" />
+	</bean>
+
+</beans>
