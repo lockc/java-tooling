@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration>
+
+	<appender name="LOG_CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="TRACE" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5p %C{1} %m%n" />
+		</layout>
+	</appender>
+
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="LOG_CONSOLE" />
+	</root>
+
+</log4j:configuration>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+
+<!-- This is not included in the deployment artifact (war). It is only used for 
+	development purposes and running the API locally via the maven-jetty-plugin -->
+	
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+
+	
+	
+</Configure>
