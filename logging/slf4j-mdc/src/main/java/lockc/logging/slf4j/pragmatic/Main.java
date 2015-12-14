@@ -20,7 +20,7 @@ public class Main
         // configure the appender
         console.setName("console");
         String PATTERN = "%d{yyyy-MMM-dd HH:mm:ss.SSS} | %X{id} | %c{1} | %-5p | %C{1} | %m%n";
-        console.setLayout(new PatternLayout(PATTERN));
+        console.setLayout(new PatternLayout("CONSOLE - " + PATTERN));
         console.setThreshold(Level.DEBUG);
         console.activateOptions();
         // add appender to any Logger (here is root)
@@ -29,7 +29,7 @@ public class Main
         FileAppender fa = new FileAppender();
         fa.setName("FileLogger");
         fa.setFile("mylog.log");
-        fa.setLayout(new PatternLayout("CONSOLE - " + PATTERN));
+        fa.setLayout(new PatternLayout("FILE - " + PATTERN));
         fa.setThreshold(Level.DEBUG);
         fa.setAppend(true);
         fa.activateOptions();
