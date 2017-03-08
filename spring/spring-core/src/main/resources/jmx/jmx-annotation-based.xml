@@ -6,14 +6,24 @@
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<!-- 
-	  Standalone application so we need to register an MBean Server.
-	  Will create a MBean server bean with an id of 'mbeanServer' 
-	-->
-	<context:mbean-server/>
+	<!-- Standalone application so we need to register an MBean Server. Will 
+		create a MBean server bean with an id of 'mbeanServer' -->
+	<context:mbean-server />
 	
-	<!-- Configure Spring to use annotations -->
-	<context:mbean-export  server="mbeanServer"/>
+		<!-- Configure Spring to use annotations -->
+	<context:mbean-export server="mbeanServer" />
+
+<bean id="registry" class="org.springframework.remoting.rmi.RmiRegistryFactoryBean">
+  <property name="port" value="1099"/>
+</bean>
+<!-- 
+-Dcom.sun.management.jmxremote.authenticate=false
+ -Dcom.sun.management.jmxremote.ssl=false 
+-Dcom.sun.management.jmxremote.port=1099
+ -->
+
+
+	<!-- service:jmx:rmi:///jndi/rmi://localhost:1099/myconnector -->
 
 	<bean id="testBean" class="lockc.spring.examples.core.jmx.JmxAnnotatedTestBean">
 		<property name="name" value="Chris" />

@@ -9,7 +9,8 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<spring.version>3.2.7.RELEASE</spring.version>
+		<spring.version>4.3.7.RELEASE</spring.version>
+		<jpa.version>1.0.0.Final</jpa.version>
 	</properties>
 
 	<dependencyManagement>
@@ -38,6 +39,12 @@
 				<version>${spring.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.hibernate.javax.persistence</groupId>
+				<artifactId>hibernate-jpa-2.1-api</artifactId>
+				<version>${jpa.version}</version>
+			</dependency>
+
 			<!-- JDBC Driver for sqlite -->
 			<dependency>
 				<groupId>org.xerial</groupId>
@@ -58,6 +65,7 @@
 		<module>spring-demo-db-domain</module>
 		<module>spring-core</module>
 		<module>spring-jdbc</module>
-		<module>spring-orm-hibernate</module>
+        <module>spring-orm-hibernate</module>
+        <module>spring-orm-hibernate-anno</module>
 	</modules>
 </project>

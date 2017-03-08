@@ -4,44 +4,36 @@ package lockc.spring.examples.orm;
 import lockc.spring.examples.orm.domain.Customer;
 import lockc.spring.examples.orm.domain.PersonalDetails;
 import org.apache.commons.lang.RandomStringUtils;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
 
 import java.util.List;
 
 /**
- * This example uses Spring's {@link LocalSessionFactoryBean} class which use XML based 
- * configuration and Hibernate mapping files (e.g. Customer.hbm.xml) to wire the lockc.spring.examples.orm.domain
- * to Hibernate.
+ *
  *  
  * 
  * @author lockc
  *
  */
-public class SpringHibernateXmlDemo implements DemoDao {
+public class SpringHibernateAnnotationsDemo implements DemoDao {
 
 	private SessionFactory sessionFactory;
-	
-	public SpringHibernateXmlDemo(SessionFactory sessionFactory) {
+
+	public SpringHibernateAnnotationsDemo(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 	
 	public List<Customer> retrieveCustomers() {
-		
-		List<Customer> customers = null;
-		Session session = null;
+        Session session = null;
 		try {
 			session = sessionFactory.openSession();
-			Query query = session.createQuery("from Customer");
-			customers = query.list();
+            List<Customer> customers = session.createCriteria(Customer.class).list();
+            return customers;
 		} finally {
 			session.close();
 		}
-		
-		return customers;
 	}
 
 	public Customer retrieveCustomer(long id) {
@@ -60,11 +52,6 @@ public class SpringHibernateXmlDemo implements DemoDao {
 			session = sessionFactory.openSession();
 			session.beginTransaction();
 			session.save(customer);
-			
-//			PersonalDetails personalDetails = customer.getPersonalDetails();
-//			personalDetails.setCustomerId(customer.getCustomerId());
-//			session.save(personalDetails);
-			
 			session.getTransaction().commit();
 		} finally {
 			session.close();
@@ -80,7 +67,7 @@ public class SpringHibernateXmlDemo implements DemoDao {
 		
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"orm-hibernate-sqlite-example.xml");
-		DemoDao demoDao = (DemoDao) context.getBean("demoDao");
+		DemoDao demoDao = (DemoDao) context.getBean("demoDaoAnnotations");
 
 		try {
 			
@@ -95,17 +82,15 @@ public class SpringHibernateXmlDemo implements DemoDao {
 			pd.setEmail(RandomStringUtils.randomAlphabetic(30));
 			
 			Customer newCust = new Customer(RandomStringUtils.randomAlphanumeric(10), true);
-//			newCust.setPersonalDetails(pd);
+			newCust.setPersonalDetails(pd);
 			
 			
 			demoDao.insertCustomer(newCust);
-			Customer c = demoDao.retrieveCustomer(20);
-			System.out.println(c.toString());
 			
 			
 			List<Customer> customers = demoDao.retrieveCustomers();
 			for(Customer customer : customers) {
-				System.out.println(customer.toString());
+				System.out.println(customer);
 			}
 			
 			

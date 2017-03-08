@@ -1,12 +1,11 @@
 package lockc.spring.examples.orm;
 
-import java.util.List;
-
-import lockc.spring.examples.demo.domain.Customer;
-
-import org.hibernate.SessionFactory;
+import lockc.spring.examples.orm.domain.Customer;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import java.util.List;
 
 /**
  * This example does not use Spring at all, it intialises and configures 

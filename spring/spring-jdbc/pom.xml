@@ -39,7 +39,7 @@
         
   	    <dependency>
     	 	<groupId>lockc.spring.examples</groupId>
-            <artifactId>spring-demo-db-domain</artifactId>
+            <artifactId>spring-demo-db-lockc.spring.examples.orm.domain</artifactId>
             <version>${project.version}</version>
         </dependency>
     
