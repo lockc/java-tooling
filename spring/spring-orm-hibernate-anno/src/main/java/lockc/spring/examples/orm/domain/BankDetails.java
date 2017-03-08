@@ -1,18 +1,23 @@
 package lockc.spring.examples.orm.domain;
 
-public class BankDetails {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "BANK_DETAILS")
+public class BankDetails {
+	@Id
+    @GeneratedValue
 	private long id;
-	private long customerId;
+	@Column(name = "account_number")
 	private String accountNumber;
+	@Column(name = "sort_code")
 	private String sortCode;
-	
-	
-	public long getCustomerId() {
-		return customerId;
+
+	public long getId() {
+		return id;
 	}
-	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getAccountNumber() {
 		return accountNumber;
@@ -25,5 +30,5 @@ public class BankDetails {
 	}
 	public void setSortCode(String sortCode) {
 		this.sortCode = sortCode;
-	}	
+	}
 }

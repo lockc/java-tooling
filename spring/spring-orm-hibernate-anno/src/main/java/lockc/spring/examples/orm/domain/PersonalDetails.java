@@ -3,19 +3,19 @@ package lockc.spring.examples.orm.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PERSONAL_DETAILS")
+@Table(name = "personal_details")
 public class PersonalDetails {
 
     @Id
     @GeneratedValue
     private long id;
-	@Column(name = "FIRST_NAME")
+	@Column(name = "first_name")
 	private String firstname;
 	@Column
 	private String surname;
-	@Column(name = "ADDRESS_LINE_1")
+	@Column(name = "address_line_1")
 	private String addressLine1;
-	@Column(name = "ADDRESS_LINE_2")
+	@Column(name = "address_line_2")
 	private String addressLine2;
 	@Column
 	private String town;
