@@ -1,9 +1,6 @@
 package lockc.spring.examples.orm;
 
-import lockc.spring.examples.orm.domain.BankDetails;
-import lockc.spring.examples.orm.domain.Customer;
-import lockc.spring.examples.orm.domain.Order;
-import lockc.spring.examples.orm.domain.PersonalDetails;
+import lockc.spring.examples.orm.domain.*;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
@@ -21,6 +18,7 @@ public class SchemaGenerator {
         cfg.addAnnotatedClass(PersonalDetails.class);
         cfg.addAnnotatedClass(BankDetails.class);
         cfg.addAnnotatedClass(Order.class);
+        cfg.addAnnotatedClass(Product.class);
     }
 
     private void generate() {

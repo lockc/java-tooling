@@ -1,10 +1,7 @@
 package lockc.spring.examples.orm;
 
 
-import lockc.spring.examples.orm.domain.BankDetails;
-import lockc.spring.examples.orm.domain.Customer;
-import lockc.spring.examples.orm.domain.Order;
-import lockc.spring.examples.orm.domain.PersonalDetails;
+import lockc.spring.examples.orm.domain.*;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -54,6 +51,11 @@ public class SpringHibernateAnnotationsDemo {
         Order order2 = new Order();
         order2.setDescription("New order - " + RandomStringUtils.randomAlphabetic(5));
         order2.setCustomer(newCust);
+
+        Product p1 = new Product();
+        p1.setName("Product 1");
+
+        order2.getProducts().add(p1);
         service.placeOrrder(order2);
 	}
 }

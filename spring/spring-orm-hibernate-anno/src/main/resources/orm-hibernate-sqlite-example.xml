@@ -29,6 +29,7 @@
 				<value>lockc.spring.examples.orm.domain.PersonalDetails</value>
 				<value>lockc.spring.examples.orm.domain.BankDetails</value>
 				<value>lockc.spring.examples.orm.domain.Order</value>
+				<value>lockc.spring.examples.orm.domain.Product</value>
 			</list>
 		</property>
 

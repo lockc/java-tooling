@@ -1,6 +1,9 @@
 package lockc.spring.examples.orm.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Chris
@@ -13,6 +16,10 @@ public class Order {
     private int id;
     @Column
     private String description;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable
+    private List<Product> products;
 
     @ManyToOne
     @JoinColumn(name = "cust_id", nullable = false)
@@ -40,5 +47,16 @@ public class Order {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Product> getProducts() {
+        if(Objects.isNull(products)){
+            products = new ArrayList<Product>();
+        }
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
