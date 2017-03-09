@@ -3,7 +3,7 @@ package lockc.spring.examples.orm.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "BANK_DETAILS")
+@Table(name = "bank_Details")
 public class BankDetails {
 	@Id
     @GeneratedValue

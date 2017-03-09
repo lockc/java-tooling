@@ -1,6 +1,7 @@
 package lockc.spring.examples.orm.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -8,9 +9,9 @@ public class Customer {
 	@Id
 	@GeneratedValue
 	private long id;
-	@Column
+	@Column(unique = true, nullable = false)
 	private String username;
-	@Column
+	@Column(nullable = false)
 	private boolean active;
 
     /**
@@ -23,7 +24,18 @@ public class Customer {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="bd_id")
 	private BankDetails bankDetails;
-	
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+	private List<Order> orders;
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
 	public Customer() { }
 	
 	public Customer(String username, boolean active) {

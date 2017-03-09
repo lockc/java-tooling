@@ -1,18 +1,21 @@
 package lockc.spring.examples.orm;
 
 import lockc.spring.examples.orm.domain.Customer;
+import lockc.spring.examples.orm.domain.Order;
 
 import java.util.List;
 
 
 public interface DemoDao {
 
-	public List<Customer> retrieveCustomers();
+	List<Customer> retrieveCustomers();
 	
-	public Customer retrieveCustomer(long id);
+	Customer retrieveCustomer(long id);
 	
-	public void insertCustomer(Customer customer);
+	void insertCustomer(Customer customer);
+
+	void insertOrder(Order order);
 	
-	public void close();
+	void close();
 
 }
