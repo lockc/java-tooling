@@ -62,7 +62,6 @@
 	</dependencyManagement>
 
 	<modules>
-		<module>spring-demo-db-domain</module>
 		<module>spring-core</module>
 		<module>spring-jdbc</module>
         <module>spring-orm-hibernate</module>

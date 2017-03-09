@@ -1,8 +1,8 @@
 package lockc.spring.examples.jdbc;
 
-import java.util.List;
+import lockc.spring.examples.jdbc.domain.Customer;
 
-import lockc.spring.examples.demo.domain.Customer;
+import java.util.List;
 
 public interface DemoDao {
 

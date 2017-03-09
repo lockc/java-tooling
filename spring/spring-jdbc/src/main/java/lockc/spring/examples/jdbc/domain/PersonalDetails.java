@@ -1,4 +1,4 @@
-package lockc.spring.examples.demo.domain;
+package lockc.spring.examples.jdbc.domain;
 
 public class PersonalDetails {
 	private long customerId;

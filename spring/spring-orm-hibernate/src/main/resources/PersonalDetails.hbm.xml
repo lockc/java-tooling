@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-	<class name="lockc.spring.examples.demo.domain.PersonalDetails" table="personal_details">
+	<class name="lockc.spring.examples.demo.lockc.spring.examples.jdbc.domain.PersonalDetails" table="personal_details">
 		<id type="java.lang.Long">
 			<column name="ID"/>
 			<generator class="identity" />

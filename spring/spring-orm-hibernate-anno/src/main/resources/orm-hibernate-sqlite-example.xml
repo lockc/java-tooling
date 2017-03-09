@@ -25,9 +25,9 @@
 		<!-- -->
 		<property name="annotatedClasses">
 			<list>
-				<value>lockc.spring.examples.orm.domain.Customer</value>
-				<value>lockc.spring.examples.orm.domain.PersonalDetails</value>
-                <value>lockc.spring.examples.orm.domain.BankDetails</value>
+				<value>lockc.spring.examples.orm.lockc.spring.examples.jdbc.domain.Customer</value>
+				<value>lockc.spring.examples.orm.lockc.spring.examples.jdbc.domain.PersonalDetails</value>
+                <value>lockc.spring.examples.orm.lockc.spring.examples.jdbc.domain.BankDetails</value>
 			</list>
 		</property>
 

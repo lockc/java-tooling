@@ -1,15 +1,14 @@
 package lockc.spring.examples.jdbc;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-
-import lockc.spring.examples.demo.domain.Customer;
-
+import lockc.spring.examples.jdbc.domain.Customer;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * An example of extending the {@link JdbcDaoSupport} class.  Means you 
