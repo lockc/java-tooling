@@ -3,6 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.3.RELEASE</version>
+	</parent>
+
 	<groupId>lockc.spring.examples</groupId>
 	<artifactId>spring-examples-pom</artifactId>
 	<version>1.0-SNAPSHOT</version>
@@ -64,7 +70,8 @@
 	<modules>
 		<module>spring-core</module>
 		<module>spring-jdbc</module>
-        <module>spring-orm-hibernate</module>
-        <module>spring-orm-hibernate-anno</module>
+		<module>spring-orm-hibernate</module>
+		<module>spring-orm-hibernate-anno</module>
+		<module>spring-hateoas</module>
 	</modules>
 </project>
