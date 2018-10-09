@@ -1,0 +1,28 @@
+# Configuration file for the ${app.name}
+
+# Path to the binary
+PROGPATH=\${JAVA_HOME:-/usr/java/default}/bin
+
+# Name of the binary in the above location
+PROG=java
+
+# Path to where the PID_FILE will be created
+PID_DIR=/var/run/${app.name}
+
+# Name to use to store the PID
+PID_FILE=${app.name}.pid
+
+# User to execute the binary as and own PID_DIR
+RUNAS=${app.service.user}
+
+# JVM Options
+JVM_OPTIONS="-Xms2048m -Xmx2048m"
+
+# The Java application to execute
+JAR_FILE=${app.install.dir}/${app.name}/lib/${project.build.finalName}.jar
+
+# The Java application start up arguments
+JAR_ARGS="--spring.config.location=classpath:/,${app.config.dir}/${app.name}/application.properties --logging.config=${app.config.dir}/${app.name}/logback.xml"
+
+# The options to the java executable
+PROG_OPTIONS="\${JVM_OPTIONS} -jar \${JAR_FILE} \${JAR_ARGS}"

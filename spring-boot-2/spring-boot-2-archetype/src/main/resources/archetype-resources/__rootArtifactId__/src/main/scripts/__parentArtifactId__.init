@@ -1,0 +1,129 @@
+#!/bin/bash
+#
+# Start up the ${app.name}
+#
+# chkconfig: 2345 55 25
+# description: ${app.description}
+#
+# processname: ${app.name}
+
+### BEGIN INIT INFO
+# Provides: ${app.name}
+# Required-Start: $local_fs
+# Required-Stop: $local_fs
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start up the ${app.name}
+# Description: ${app.description}
+### END INIT INFO
+
+SYSTEMCTL_SKIP_REDIRECT=YES
+
+# source function library
+. /etc/rc.d/init.d/functions
+
+[ -f /etc/sysconfig/${app.name} ] && . /etc/sysconfig/${app.name} || exit 6
+
+RETVAL=0
+readonly lockfile=/var/lock/subsys/${app.name}
+
+start()
+{
+    [ -x \${PROGPATH}/\${PROG} ] || exit 5
+
+    if [ -e \${PID_DIR}/\${PID_FILE} ]
+    then
+        echo "Pid file exists"
+        failure
+        exit 1
+    fi
+
+    if [ -e \${lockfile} ]
+    then
+        echo "Lock file exists"
+        failure
+        exit 2
+    fi
+
+    touch "\${PID_DIR}/\${PID_FILE}"
+    chown ${RUNAS}:${RUNAS} "\${PID_DIR}/\${PID_FILE}"
+
+    echo -n $"Starting ${app.name}: "
+    echo -n $"\${PROGPATH}/\${PROG} \${PROG_OPTIONS}"
+
+    daemon --user ${RUNAS} --pidfile \${PID_DIR}/\${PID_FILE} "\${PROGPATH}/\${PROG} \${PROG_OPTIONS} > /dev/null 2>&1 &" && success || failure
+    RETVAL=$?
+    if [ \${RETVAL} -eq 0 ]
+    then
+        PID=`pgrep -f \${JAR_FILE}`
+        echo $PID > \${PID_DIR}/\${PID_FILE}
+        touch \${lockfile}
+    fi
+
+    echo
+    return \${RETVAL}
+}
+
+stop()
+{
+    echo -n $"Stopping ${app.name}: "
+    killproc -p \${PID_DIR}/\${PID_FILE} \${PROG}
+    RETVAL=$?
+    [ \${RETVAL} -eq 0 ] && rm -f \${lockfile}
+    echo
+}
+
+restart() {
+    stop
+    start
+}
+
+rh_status() {
+    status -p \${PID_DIR}/\${PID_FILE} ${app.name}
+}
+
+rh_status_q() {
+    rh_status >/dev/null 2>&1
+}
+
+case "$1" in
+    start)
+        rh_status_q && exit 0
+    start
+    ;;
+    stop)
+        if ! rh_status_q; then
+            rm -f \${lockfile}
+            exit 0
+        fi
+    stop
+    ;;
+    restart)
+        restart
+    ;;
+    condrestart|try-restart)
+        rh_status_q || exit 0
+        if [ -f \${lockfile} ] ; then
+            do_restart_sanity_check
+            if [ \${RETVAL} -eq 0 ] ; then
+                stop
+                # avoid race
+                sleep 3
+                start
+            else
+                RETVAL=6
+            fi
+        fi
+    ;;
+    status)
+        rh_status
+        RETVAL=$?
+        if [ $RETVAL -eq 3 -a -f $lockfile ] ; then
+            RETVAL=2
+        fi
+        ;;
+        *)
+            echo $"Usage: $0 {start|stop|restart|condrestart|try-restart|status}"
+            RETVAL=2
+    esac
+exit \${RETVAL}
