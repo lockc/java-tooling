@@ -19,9 +19,9 @@
 		<app.description>${application-description}</app.description>
 		<app.service.user>service_${application-acronym}</app.service.user>
 		<app.service.owner>root</app.service.owner>
-		<app.install.dir>/usr/local/spring</app.install.dir>
-		<app.config.dir>/etc/local/spring</app.config.dir>
-		<app.log.dir>/var/log/local/spring</app.log.dir>
+		<app.install.dir>/usr/local</app.install.dir>
+		<app.config.dir>/etc</app.config.dir>
+		<app.log.dir>/var/log</app.log.dir>
 
 		<!-- Used by the spring-boot-maven-plugin for running the app via Maven-->
 		<env>local</env>
@@ -118,6 +118,10 @@
 						<configuration>
 							<encoding>UTF-8</encoding>
 							<escapeString>\</escapeString>
+							<delimiters>
+								<delimiter>${*}</delimiter>
+								<delimiter>@</delimiter>
+							</delimiters>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -146,9 +150,6 @@
 							<provides>
 								<provide>${app.name}</provide>
 							</provides>
-							<requires>
-								<require>spring-application-base</require>
-							</requires>
 							<mappings>
 								<!-- lib -->
 								<mapping>
@@ -205,7 +206,7 @@
 								</mapping>
 								<!-- init.d -->
 								<mapping>
-									<directory>/etc/init.d/</directory>
+									<directory>/etc/init.d</directory>
 									<directoryIncluded>false</directoryIncluded>
 									<filemode>755</filemode>
 									<groupname>${app.service.owner}</groupname>
@@ -218,7 +219,7 @@
 									</sources>
 								</mapping>
 								<mapping>
-									<directory>/etc/sysconfig/</directory>
+									<directory>/etc/sysconfig</directory>
 									<directoryIncluded>false</directoryIncluded>
 									<groupname>${app.service.owner}</groupname>
 									<username>${app.service.owner}</username>
