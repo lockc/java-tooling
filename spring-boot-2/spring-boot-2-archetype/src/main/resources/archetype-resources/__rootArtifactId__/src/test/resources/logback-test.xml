@@ -7,10 +7,6 @@
 	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
 	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 
-	<root level="INFO">
-		<appender-ref ref="CONSOLE" />
-	</root>
-
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>target/log/server.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -26,27 +22,9 @@
         </rollingPolicy>
     </appender>
 
-    <logger name="root" additivity="false" level="INFO">
-        <appender-ref ref="FILE"/>
-    </logger>
-
-    <appender name="METRICS" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>target/log/metrics.log</file>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%X{TRACE_ROOT_CAUSE_ID}|%X{TRACE_CURRENT_EVENT_ID}] [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- rollover daily -->
-			<fileNamePattern>target/log/metrics.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-               	<maxFileSize>10MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-        </rollingPolicy>
-    </appender>
-
-    <logger name="metrics" additivity="false" level="INFO">
-        <appender-ref ref="METRICS" />
-    </logger>
+	<root level="INFO">
+		<appender-ref ref="FILE"/>
+		<appender-ref ref="CONSOLE" />
+	</root>
 
 </configuration>

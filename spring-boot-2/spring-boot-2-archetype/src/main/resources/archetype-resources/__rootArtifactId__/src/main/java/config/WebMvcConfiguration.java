@@ -3,8 +3,6 @@
 #set( $symbol_escape = '\' )
 package ${package}.config;
 
-import javax.annotation.Resource;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

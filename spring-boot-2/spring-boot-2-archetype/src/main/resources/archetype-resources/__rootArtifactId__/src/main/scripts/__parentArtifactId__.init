@@ -30,6 +30,7 @@ readonly lockfile=/var/lock/subsys/${app.name}
 start()
 {
     [ -x \${PROGPATH}/\${PROG} ] || exit 5
+    [ -e ${PID_DIR} ] || mkdir ${PID_DIR}
 
     if [ -e \${PID_DIR}/\${PID_FILE} ]
     then

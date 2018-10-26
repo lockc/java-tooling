@@ -18,7 +18,7 @@ public class ServiceStartClass {
 	private static final Logger LOG = LoggerFactory.getLogger( ServiceStartClass.class );
 
 	public static void main( String[] args ) {
-		LOG.info( "Starting ${application-name} app in standalone mode" );
+		LOG.info( "Starting ${application-name}" );
 		new SpringApplicationBuilder().sources( ServiceStartClass.class ).run( args );
 	}
 

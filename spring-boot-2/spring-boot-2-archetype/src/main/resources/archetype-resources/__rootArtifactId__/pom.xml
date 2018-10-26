@@ -23,8 +23,8 @@
 		<app.config.dir>/etc/local/spring</app.config.dir>
 		<app.log.dir>/var/log/local/spring</app.log.dir>
 
-		<!-- Used by the spring-boot-maven-plugin for running the app locally via Maven-->
-		<env>bluebox</env>
+		<!-- Used by the spring-boot-maven-plugin for running the app via Maven-->
+		<env>local</env>
 	</properties>
 
 	<dependencies>
@@ -60,9 +60,12 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring-boot.version}</version>
 				<executions>
 					<execution>
 						<goals>
