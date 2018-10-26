@@ -19,15 +19,14 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
 import ${package}.config.WebMvcConfiguration;
-import ${package}.integrationtest.config.TestLoggingConfiguration;
-import com.pay360.spring.boot.commons.controller.WebMvcErrorHandler;
+import ${package}.controller.WebMvcErrorHandler;
 
 /**
  * Base test class for wiring in the necessary context configuration for the integration tests.
  */
 @RunWith( SpringJUnit4ClassRunner.class )
 @WebAppConfiguration
-@ContextConfiguration( classes = { TestLoggingConfiguration.class, WebMvcConfiguration.class, WebMvcErrorHandler.class  } )
+@ContextConfiguration( classes = { WebMvcConfiguration.class, WebMvcErrorHandler.class  } )
 @DirtiesContext( classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD )
 public abstract class BaseIT {
 

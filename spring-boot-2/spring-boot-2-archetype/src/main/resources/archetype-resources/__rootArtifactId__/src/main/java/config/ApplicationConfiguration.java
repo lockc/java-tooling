@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class ApplicationConfiguration {
 
 	@Bean
-	public ServletRegistrationBean dispatcherRegistration( DispatcherServlet dispatcherServlet ) {
-		ServletRegistrationBean registration = new ServletRegistrationBean( dispatcherServlet );
+	public ServletRegistrationBean<DispatcherServlet> dispatcherRegistration( DispatcherServlet dispatcherServlet ) {
+		ServletRegistrationBean<DispatcherServlet> registration = new ServletRegistrationBean<>( dispatcherServlet );
 		registration.addUrlMappings( "/*" );
 		return registration;
 	}

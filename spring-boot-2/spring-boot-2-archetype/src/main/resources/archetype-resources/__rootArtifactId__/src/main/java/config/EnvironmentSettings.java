@@ -10,15 +10,7 @@ import org.springframework.core.env.Environment;
  */
 public class EnvironmentSettings {
 
-	private final String healthCheckUrl;
-
 	public EnvironmentSettings( Environment env ) {
 
-		// Required properties
-		this.healthCheckUrl = env.getRequiredProperty( "${application-acronym}.healthCheck.url" );
-	}
-
-	public String getHealthCheckUrl() {
-		return healthCheckUrl;
 	}
 }

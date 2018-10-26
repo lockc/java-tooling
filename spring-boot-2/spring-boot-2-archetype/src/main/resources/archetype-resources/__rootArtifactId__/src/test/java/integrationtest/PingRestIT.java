@@ -25,17 +25,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ${groupId}.common.api.response.models.ErrorResponse;
-import ${package}.config.WebMvcConfiguration;
+import ${package}.controller.ErrorResponse;
 import ${package}.controller.PingController;
-import com.pay360.spring.boot.commons.controller.WebMvcErrorHandler;
 
 /**
  * Mock Spring MVC RESTful tests for the {@link PingController} class
  */
 @RunWith( SpringRunner.class )
 @WebMvcTest( controllers = PingController.class, secure = false )
-@ContextConfiguration( classes = { WebMvcConfiguration.class, PingController.class, WebMvcErrorHandler.class } )
+@ContextConfiguration( classes = { PingController.class } )
 public class PingRestIT extends BaseIT {
 
 	private static final String PING_ENDPOINT = "/ping";
